@@ -1,0 +1,10 @@
+# -*- coding: utf-8-unix; mode: org; -*-
+
+* maven から ant に classpath を渡す方法を把握する
+
+** 手順
+
+- [[file:pom.xml]]
+  - <artifactId>maven-antrun-plugin</artifactId> / <executions> / <execution> / <configuration> / <target> / <ant> 
+    の子要素に <reference torefid="maven.compile.classpath" refid="maven.compile.classpath"/> を記す。
+
