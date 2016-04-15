@@ -6,7 +6,7 @@
 
 *** 手順
 
-- [[file:pom.xml]]
+- [[file:pom.xml]]  <id>profile_classpath_problems</id>
   - <artifactId>maven-antrun-plugin</artifactId> / <executions> / <execution> / <configuration> / <target> / <ant> 
     の子要素に <reference torefid="maven.antrun.runtime.classpath" refid="maven.compile.classpath"/> を記す。
 - [[file:build.xml]]
@@ -24,9 +24,9 @@
 
 *** 手順
 
-- [[file:pom.xml]]
+- [[file:pom.xml]]  <id>profile_inheritRefs</id>
   - <artifactId>maven-antrun-plugin</artifactId> / <executions> / <execution> / <configuration> / <target> / <ant> 
-    の子要素に <reference torefid="maven.compile.classpath" refid="maven.compile.classpath"/> を記す。
+    の属性に inheritRefs="true" を記す。
 - [[file:build.xml]]
   - <java> の属性に classpathref="maven.compile.classpath" を記す。
 
@@ -48,4 +48,5 @@
   - inheritRefs を記さずに直接 <configuration> / <target> / <ant> に記す方法
 - https://maven.apache.org/plugins/maven-antrun-plugin/examples/classpaths.html
   - この例は <ant> を使わない。 <ant> を使う場合には使えない。
-
+- https://ant.apache.org/manual/Tasks/ant.html
+  - inheritRefs => If true, pass all references to the new Ant project. Defaults to false.
