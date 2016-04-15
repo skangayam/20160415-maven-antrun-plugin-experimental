@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="prepare_configuration_all" name="build">
+
+ <target name="app">
+  <!-- echo では maven.compile.classpath の値を見ることはできない。 -->
+  <echo message="maven.compile.classpath is ${maven.compile.classpath}" />
+  <java classname="com.example.project.App"
+        dir=".."
+        fork="true"
+        classpathref="maven.compile.classpath"
+  />
+ </target>
+
+</project>
