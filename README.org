@@ -2,11 +2,50 @@
 
 * maven から ant に classpath を渡す方法を把握する
 
-** 手順
+** inheritRefs を記さない方式
+
+*** 手順
+
+- [[file:pom.xml]]
+  - <artifactId>maven-antrun-plugin</artifactId> / <executions> / <execution> / <configuration> / <target> / <ant> 
+    の子要素に <reference torefid="maven.antrun.runtime.classpath" refid="maven.compile.classpath"/> を記す。
+- [[file:build.xml]]
+  - <java> の属性に classpathref="maven.antrun.runtime.classpath" を記す。
+
+*** pros and cons
+
+- メリット
+  - 渡す reference を1個ずつ指定できる。
+  - maven での reference 名前と ant での reference 名前を別々に定義できる。
+- デメリット
+  - 渡す reference を省略しないで記す必要がある。
+
+** inheritRefs を記す方法
+
+*** 手順
 
 - [[file:pom.xml]]
   - <artifactId>maven-antrun-plugin</artifactId> / <executions> / <execution> / <configuration> / <target> / <ant> 
     の子要素に <reference torefid="maven.compile.classpath" refid="maven.compile.classpath"/> を記す。
 - [[file:build.xml]]
   - <java> の属性に classpathref="maven.compile.classpath" を記す。
+
+*** pros and cons
+
+- メリット
+  - 渡す reference の記述を省略できる。
+- デメリット
+  - 渡す reference を1個ずつ指定できない。
+  - maven での reference 名前と ant での reference 名前を別々に定義できない。
+
+** 参考ページ
+
+- http://qiita.com/rato303/items/fc17bffff442770bd779
+  - mavenの実行時クラスパスをantに渡したい場合は<property name="Antに渡すプロパティ名称" refid="maven.runtime.classpath" />でクラスパスを定義する。<ant />タグにinheritRefs="true"を指定する
+  - 実験した結果、 echo では maven.compile.classpath の値を見ることはできない。
+- http://stackoverflow.com/questions/11953377/classpath-problemsrunning-ant-java-task-with-maven-antrun-plugin
+  - Classpath problems:running ant java task with Maven Antrun plugin - Stack Overflow
+  - inheritRefs を記さずに直接 <configuration> / <target> / <ant> に記す方法
+- https://maven.apache.org/plugins/maven-antrun-plugin/examples/classpaths.html
+  - この例は <ant> を使わない。 <ant> を使う場合には使えない。
 
