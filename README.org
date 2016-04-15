@@ -7,4 +7,6 @@
 - [[file:pom.xml]]
   - <artifactId>maven-antrun-plugin</artifactId> / <executions> / <execution> / <configuration> / <target> / <ant> 
     の子要素に <reference torefid="maven.compile.classpath" refid="maven.compile.classpath"/> を記す。
+- [[file:build.xml]]
+  - <java> の属性に classpathref="maven.compile.classpath" を記す。
 
